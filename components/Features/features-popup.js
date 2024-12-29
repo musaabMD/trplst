@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Suspense } from 'react';
 
 const features = [
   { emoji: '🗺️', title: 'Route Planning', description: 'Map your journey' },
@@ -48,6 +49,10 @@ export default function FeaturesPopup() {
   if (isDismissed) return null
 
   return (
+    <>
+    <Suspense>
+
+  
     <AnimatePresence>
       {isVisible && (
         <motion.div
@@ -142,5 +147,7 @@ export default function FeaturesPopup() {
         </motion.div>
       )}
     </AnimatePresence>
+    </Suspense>
+    </>
   )
 }

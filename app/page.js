@@ -1,9 +1,13 @@
 import Link from "next/link";
 import FeaturesPopup from "@/components/Features/features-popup";
+import { Suspense } from 'react';
 
 export default function Page() {
   return (
     <>
+    
+    <Suspense>
+
  <main className="min-h-screen bg-gradient-to-br ">
       <div className="container mx-auto px-4 py-16">
       <div className="text-center mb-10">
@@ -21,6 +25,8 @@ export default function Page() {
       </div>
       <FeaturesPopup />
     </main>
-    </>
+    </Suspense>
+      </>
+
   );
 }

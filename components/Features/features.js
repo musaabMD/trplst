@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { MapPin, Calendar, Users, Camera, Compass, Star } from 'lucide-react'
+import { Suspense } from 'react';
 
 const features = [
   {
@@ -45,6 +46,9 @@ export default function Features() {
   }, [])
 
   return (
+    <>
+    <Suspense>
+
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {features.map((feature, index) => (
         <motion.div
@@ -64,6 +68,8 @@ export default function Features() {
         </motion.div>
       ))}
     </div>
+      </Suspense>
+      </>
   )
 }
 

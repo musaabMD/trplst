@@ -17,7 +17,7 @@ export default function Page() {
                   </div>
                 </div>
                 <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                  Join Triplst Community 🌍
+                  Join Triplst Community1 🌍
                 </h2>
                 <p className="text-xl text-gray-600">Connect with 50,000+ fellow travelers worldwide!</p>
               </div>

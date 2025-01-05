@@ -16,7 +16,7 @@ const Header = ({ currentChannel, showDMList, setShowDMList }) => {
         <div>
           <h2 className="text-lg sm:text-xl font-semibold flex items-center">
             <Hash size={20} className="mr-2" />
-            <span className="truncate">USMLE Step 2 CK - {currentChannel}</span>
+            <span className="truncate"> {currentChannel}</span>
           </h2>
           <p className="text-xs sm:text-sm text-gray-500 mt-0.5">Team discussions and updates</p>
         </div>

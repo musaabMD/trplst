@@ -25,10 +25,10 @@ const LeftSidebar = ({ showDMList, setShowDMList, currentChannel, setCurrentChan
     } md:relative md:flex md:w-72 lg:w-80 flex-col bg-gray-900`}>
       <div className="p-4 sm:p-6 border-b border-gray-700">
         <div className="flex items-center space-x-3">
-          <div className="bg-blue-500 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center text-xl sm:text-2xl font-bold">
-            S
+          <div className="bg-red-500 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center text-xl sm:text-2xl font-bold">
+            T
           </div>
-          <h1 className="text-white text-xl sm:text-2xl font-bold">Scoorly</h1>
+          <h1 className="text-white text-xl sm:text-2xl font-bold">Triplst</h1>
         </div>
       </div>
       

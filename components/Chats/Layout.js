@@ -1,30 +1,29 @@
 "use client"
+
 import React, { useState } from 'react';
-import { AppSidebar } from './AppSidebar';
 import Header from './Header';
 import Footer from './Footer';
-import ChatArea from './ChatArea';
+import LeftSidebar from './LeftSidebar';
 import RightSidebar from './RightSidebar';
+import ChatArea from './ChatArea';
 import MobileTabBar from './MobileTabBar';
 import { cn } from '@/lib/utils';
 import {
-  SidebarInset,
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
   SidebarProvider,
+  SidebarTrigger,
+  SidebarInset
 } from "@/components/ui/sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 
 const Layout = () => {
   const [message, setMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [currentChannel, setCurrentChannel] = useState('general');
+  const [showDMList, setShowDMList] = useState(false);
   const [hoveredMessageId, setHoveredMessageId] = useState(null);
   const [showReactionPicker, setShowReactionPicker] = useState(false);
   const [selectedMessageForReaction, setSelectedMessageForReaction] = useState(null);
@@ -40,24 +39,31 @@ const Layout = () => {
 
   return (
     <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-200">
-          <div className="flex items-center gap-2 px-4">
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbPage>{currentChannel}</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-        </header>
-
+      <div className="h-screen w-full flex flex-col md:flex-row">
+        {/* Left Sidebar - hidden on mobile unless explicitly shown */}
+        <div className={cn(
+          showDMList ? 'block' : 'hidden',
+          'md:block'
+        )}>
+          <LeftSidebar 
+            showDMList={showDMList}
+            setShowDMList={setShowDMList}
+            currentChannel={currentChannel}
+            setCurrentChannel={setCurrentChannel}
+          />
+        </div>
+        
+        {/* Main Content Area */}
         <div className="flex-1 flex flex-col min-w-0">
+          <Header 
+            currentChannel={currentChannel} 
+            showDMList={showDMList}
+            setShowDMList={setShowDMList}
+          />
+          
           {/* Chat and Right Sidebar Container */}
           <div className="flex-1 flex overflow-hidden">
-            {/* Chat Area */}
+            {/* Chat Area - shown when chat tab is active on mobile */}
             <div className={cn(
               "flex-1 flex flex-col min-w-0",
               activeTab !== 'chat' && 'hidden md:flex'
@@ -80,18 +86,18 @@ const Layout = () => {
               />
             </div>
             
-            {/* Right Sidebar */}
+            {/* Right Sidebar - hidden on mobile */}
             <div className="hidden lg:block">
               <RightSidebar />
             </div>
           </div>
 
-          {/* Mobile Tab Bar */}
+          {/* Mobile Tab Bar - adjust margin-bottom to account for mobile tab bar */}
           <div className="pb-16 md:pb-0">
             <MobileTabBar activeTab={activeTab} setActiveTab={setActiveTab} />
           </div>
         </div>
-      </SidebarInset>
+      </div>
     </SidebarProvider>
   );
 };
